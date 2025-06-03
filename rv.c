@@ -12,9 +12,9 @@ void rv_init(rv *cpu, void *user, rv_bus_cb bus_cb) {
   cpu->bus_cb = bus_cb;
   cpu->pc = RV_RESET_VEC;
   cpu->csr.misa = (1 << 30)     /* MXL = 1 [XLEN=32] */
-                  | rv_ext('M') /* Multiplication and Division */
-                  | rv_ext('C') /* Compressed Instructions */
                   | rv_ext('A') /* Atomics */
+                  | rv_ext('C') /* Compressed Instructions */
+                  | rv_ext('M') /* Multiplication and Division */
                   | rv_ext('S') /* Supervisor Mode */
                   | rv_ext('U') /* User Mode */;
   cpu->priv = RV_PMACH;
@@ -576,7 +576,7 @@ rv_u32 rv_step(rv *cpu) {
           y = a | b;
         else /*I and, andi */
           y = a & b;
-      } else {
+      } else if (rv_ioph(i) == 1 && rv_if7(i) == 1) {
         rv_u32 as /* sgn(a) */ = 0, bs /* sgn(b) */ = 0, ylo, yhi /* result */;
         if (rv_if3(i) < 4) {              /*I mul, mulh, mulhsu, mulhu */
           if (rv_if3(i) < 3 && rv_sgn(a)) /* a is signed iff f3 in {0, 1, 2} */
@@ -593,10 +593,12 @@ rv_u32 rv_step(rv *cpu) {
           else if (rv_if3(i) == 5) /*I divu */
             y = b ? (a / b) : (rv_u32)(-1);
           else if (rv_if3(i) == 6) /*I rem */
-            y = (rv_u32)((rv_s32)a % (rv_s32)b);
-          else /* if (rv_if3(i) == 8) */ /*I remu */
-            y = a % b;
+            y = b ? (rv_u32)((rv_s32)a % (rv_s32)b) : a;
+          else  /*I remu */
+            y = b ? a % b : a;
         } /* all this because we don't have 64bits. worth it? probably not B) */
+      } else {
+        return rv_trap(cpu, RV_EILL, tval);
       }
       rv_sr(cpu, rv_ird(i), y);   /* set register to ALU output */
     } else if (rv_ioph(i) == 3) { /*Q 11/100: SYSTEM */

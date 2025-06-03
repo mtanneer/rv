@@ -29,5 +29,11 @@ run_test: run_test.c rv.c
 rv32%: vectors run_test
 	./run_test vectors/$@
 
+regresh: regresh.c rv.c
+	$(CC) $(CFLAGS) regresh.c rv.c -o $@
+
+run_regresh: regresh
+	./regresh
+
 clean:
 	rm -rf vectors run_test run_test_debug *.dSYM

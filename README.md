@@ -3,6 +3,7 @@
 RISC-V CPU core written in ANSI C.
 
 Features:
+
 - `RV32IMAC_Zicsr` implementation with M-mode and S-mode
 - Boots RISCV32 Linux
 - Passes all supported tests in [`riscv-tests`](https://github.com/riscv/riscv-tests)
@@ -85,18 +86,18 @@ To dump a binary starting at `0x80000000` that can be directly loaded by `rv` as
 
 Click an instruction to see its implementation in `rv.c`.
 
-- [`add       `](rv.c#L589)[`addi      `](rv.c#L589)[`amoadd.w  `](rv.c#L548)[`amoand.w  `](rv.c#L560)[`amomax.w  `](rv.c#L564)[`amomaxu.w `](rv.c#L568)[`amomin.w  `](rv.c#L562)[`amominu.w `](rv.c#L566)
-- [`amoor.w   `](rv.c#L558)[`amoswap.w `](rv.c#L550)[`amoxor.w  `](rv.c#L556)[`and       `](rv.c#L606)[`andi      `](rv.c#L606)[`auipc     `](rv.c#L696)[`beq       `](rv.c#L509)[`bge       `](rv.c#L512)
-- [`bgtu      `](rv.c#L514)[`blt       `](rv.c#L511)[`bltu      `](rv.c#L513)[`bne       `](rv.c#L510)[`c.add     `](rv.c#L386)[`c.addi    `](rv.c#L324)[`c.addi16sp`](rv.c#L331)[`c.and     `](rv.c#L352)
-- [`c.andi    `](rv.c#L343)[`c.beqz    `](rv.c#L362)[`c.bnez    `](rv.c#L364)[`c.ebreak  `](rv.c#L383)[`c.j       `](rv.c#L360)[`c.jal     `](rv.c#L326)[`c.jalr    `](rv.c#L380)[`c.jr      `](rv.c#L375)
-- [`c.li      `](rv.c#L328)[`c.lui     `](rv.c#L333)[`c.lw      `](rv.c#L316)[`c.lwsp    `](rv.c#L372)[`c.mv      `](rv.c#L377)[`c.or      `](rv.c#L350)[`c.slli    `](rv.c#L370)[`c.srai    `](rv.c#L341)
-- [`c.srli    `](rv.c#L339)[`c.sub     `](rv.c#L346)[`c.sw      `](rv.c#L318)[`c.swsp    `](rv.c#L388)[`c.xor     `](rv.c#L348)[`csrrc     `](rv.c#L649)[`csrrci    `](rv.c#L649)[`csrrs     `](rv.c#L643)
-- [`csrrsi    `](rv.c#L643)[`csrrw     `](rv.c#L634)[`csrrwi    `](rv.c#L634)[`div       `](rv.c#L620)[`divu      `](rv.c#L622)[`ebreak    `](rv.c#L685)[`ecall     `](rv.c#L682)[`fence     `](rv.c#L531)
-- [`fence.i   `](rv.c#L535)[`jal       `](rv.c#L577)[`jalr      `](rv.c#L524)[`lb        `](rv.c#L488)[`lbu       `](rv.c#L488)[`lh        `](rv.c#L488)[`lhu       `](rv.c#L488)[`lr.w      `](rv.c#L552)
-- [`lui       `](rv.c#L698)[`lw        `](rv.c#L488)[`mret      `](rv.c#L658)[`mul       `](rv.c#L610)[`mulh      `](rv.c#L610)[`mulhsu    `](rv.c#L610)[`mulhu     `](rv.c#L610)[`or        `](rv.c#L604)
-- [`ori       `](rv.c#L604)[`rem       `](rv.c#L624)[`remu      `](rv.c#L626)[`sb        `](rv.c#L500)[`sc.w      `](rv.c#L554)[`sfence.vma`](rv.c#L678)[`sh        `](rv.c#L500)[`sll       `](rv.c#L594)
-- [`slli      `](rv.c#L594)[`slt       `](rv.c#L596)[`slti      `](rv.c#L596)[`sltiu     `](rv.c#L598)[`sltu      `](rv.c#L598)[`sra       `](rv.c#L602)[`srai      `](rv.c#L602)[`sret      `](rv.c#L658)
-- [`srl       `](rv.c#L602)[`srli      `](rv.c#L602)[`sub       `](rv.c#L589)[`sw        `](rv.c#L500)[`wfi       `](rv.c#L675)[`xor       `](rv.c#L600)[`xori      `](rv.c#L600)
+- [`add       `](rv.c#L560)[`addi      `](rv.c#L560)[`amoadd.w  `](rv.c#L519)[`amoand.w  `](rv.c#L531)[`amomax.w  `](rv.c#L535)[`amomaxu.w `](rv.c#L539)[`amomin.w  `](rv.c#L533)[`amominu.w `](rv.c#L537)
+- [`amoor.w   `](rv.c#L529)[`amoswap.w `](rv.c#L521)[`amoxor.w  `](rv.c#L527)[`and       `](rv.c#L577)[`andi      `](rv.c#L577)[`auipc     `](rv.c#L669)[`beq       `](rv.c#L480)[`bge       `](rv.c#L483)
+- [`bgtu      `](rv.c#L485)[`blt       `](rv.c#L482)[`bltu      `](rv.c#L484)[`bne       `](rv.c#L481)[`c.add     `](rv.c#L357)[`c.addi    `](rv.c#L295)[`c.addi16sp`](rv.c#L302)[`c.and     `](rv.c#L323)
+- [`c.andi    `](rv.c#L314)[`c.beqz    `](rv.c#L333)[`c.bnez    `](rv.c#L335)[`c.ebreak  `](rv.c#L354)[`c.j       `](rv.c#L331)[`c.jal     `](rv.c#L297)[`c.jalr    `](rv.c#L351)[`c.jr      `](rv.c#L346)
+- [`c.li      `](rv.c#L299)[`c.lui     `](rv.c#L304)[`c.lw      `](rv.c#L287)[`c.lwsp    `](rv.c#L343)[`c.mv      `](rv.c#L348)[`c.or      `](rv.c#L321)[`c.slli    `](rv.c#L341)[`c.srai    `](rv.c#L312)
+- [`c.srli    `](rv.c#L310)[`c.sub     `](rv.c#L317)[`c.sw      `](rv.c#L289)[`c.swsp    `](rv.c#L359)[`c.xor     `](rv.c#L319)[`csrrc     `](rv.c#L622)[`csrrci    `](rv.c#L622)[`csrrs     `](rv.c#L616)
+- [`csrrsi    `](rv.c#L616)[`csrrw     `](rv.c#L607)[`csrrwi    `](rv.c#L607)[`div       `](rv.c#L591)[`divu      `](rv.c#L593)[`ebreak    `](rv.c#L658)[`ecall     `](rv.c#L655)[`fence     `](rv.c#L502)
+- [`fence.i   `](rv.c#L506)[`jal       `](rv.c#L548)[`jalr      `](rv.c#L495)[`lb        `](rv.c#L459)[`lbu       `](rv.c#L459)[`lh        `](rv.c#L459)[`lhu       `](rv.c#L459)[`lr.w      `](rv.c#L523)
+- [`lui       `](rv.c#L671)[`lw        `](rv.c#L459)[`mret      `](rv.c#L631)[`mul       `](rv.c#L581)[`mulh      `](rv.c#L581)[`mulhsu    `](rv.c#L581)[`mulhu     `](rv.c#L581)[`or        `](rv.c#L575)
+- [`ori       `](rv.c#L575)[`rem       `](rv.c#L595)[`remu      `](rv.c#L597)[`sb        `](rv.c#L471)[`sc.w      `](rv.c#L525)[`sfence.vma`](rv.c#L651)[`sh        `](rv.c#L471)[`sll       `](rv.c#L565)
+- [`slli      `](rv.c#L565)[`slt       `](rv.c#L567)[`slti      `](rv.c#L567)[`sltiu     `](rv.c#L569)[`sltu      `](rv.c#L569)[`sra       `](rv.c#L573)[`srai      `](rv.c#L573)[`sret      `](rv.c#L631)
+- [`srl       `](rv.c#L573)[`srli      `](rv.c#L573)[`sub       `](rv.c#L560)[`sw        `](rv.c#L471)[`wfi       `](rv.c#L648)[`xor       `](rv.c#L571)[`xori      `](rv.c#L571)
 
 ## FAQ
 
@@ -111,9 +112,11 @@ Click an instruction to see its implementation in `rv.c`.
 - C only allows constant expressions in switch statements. In addition to an abundance of `break` statements using these would result in more bloated code in the author's opinion. As it turns out, you are actually free to reimplement this code with switch statements. See [LICENSE.txt](LICENSE.txt).
 
 ### Not useful!
+
 - [Ok](https://www.google.com/search?q=happy+smiley+thumbs+up+happy+cool+funny+ok&tbm=isch)
 
 ### Slow!
+
 - [Ok](https://www.google.com/search?q=happy+smiley+thumbs+up+happy+cool+funny+ok&tbm=isch)
 
 ## Caveats
